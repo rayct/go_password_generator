@@ -3,7 +3,7 @@
 *.dll
 *.so
 *.dylib
-
+main_test.go
 # Test binary, build with `go test -c`
 *.test
 
@@ -28,6 +28,10 @@
 *.code-workspace
 .DS_Store
 NOTES.md
+TODO.md
+tmp.txt
+generated_passwords.txt
+
 
 # Ignore any backup files created by text editors or version control systems
 *~
