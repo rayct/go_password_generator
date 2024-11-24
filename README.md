@@ -1,4 +1,4 @@
-## Password Generator written in Go.
+## Password Generator written in Go - Release v0.1.0
 
 ## Table of Contents
 
@@ -72,6 +72,6 @@ func main() {
 
 Documentation By: **Raymond C. TURNER**
 
-**Revision:** Saturday 9th December 2023
+**Revision:** November 24th, 2023
 
-**codestak.io**
+**rayturner.dev**
