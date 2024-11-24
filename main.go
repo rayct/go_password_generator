@@ -30,7 +30,7 @@ func generatePassword(length int) string {
 }
 
 func main() {
-	passwordLength := 18 // Change this value to set the length of the password
+	passwordLength := 22 // Change this value to set the length of the password
 	password := generatePassword(passwordLength)
 	fmt.Printf("Generated Password: %s\n", password)
 }
