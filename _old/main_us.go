@@ -17,7 +17,7 @@ const (
 )
 
 var (
-	lineCounter int      // Global counter for sequential line numbers
+	lineCounter int        // Global counter for sequential line numbers
 	counterLock sync.Mutex // Mutex to prevent race conditions
 )
 
@@ -72,4 +72,3 @@ func main() {
 		logPassword(password)
 	}
 }
-

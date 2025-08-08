@@ -1,13 +1,17 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"log"
 	"math/rand"
 	"os"
+	"strings"
 	"sync"
 	"time"
 )
+
+var nowFunc = time.Now
 
 const (
 	uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -17,58 +21,95 @@ const (
 )
 
 var (
-	lineCounter int        // Global counter for sequential line numbers
-	counterLock sync.Mutex // Mutex to prevent race conditions
+	lineCounter int
+	counterLock sync.Mutex
+
+	// logPassword is a function variable for easy override/swapping
+	logPassword func(string)
 )
 
-// Function to log generated passwords
-func logPassword(password string) {
-	// Open the log file in append mode, create it if it doesn't exist
-	logFile, err := os.OpenFile("passwords.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		fmt.Printf("Error opening log file: %v\n", err)
-		return
+func init() {
+	// Default logPassword uses UK format
+	setLogFormat("UK")
+}
+
+func setLogFormat(format string) {
+	switch strings.ToUpper(format) {
+	case "US":
+		logPassword = func(password string) {
+			logFile, err := os.OpenFile("passwords.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+			if err != nil {
+				fmt.Printf("Error opening log file: %v\n", err)
+				return
+			}
+			defer logFile.Close()
+
+			counterLock.Lock()
+			lineCounter++
+			currentLine := lineCounter
+			counterLock.Unlock()
+
+			currentTime := nowFunc().Format("01/02/2006 03:04:05 PM") // MM/DD/YYYY hh:mm:ss AM/PM
+
+			logger := log.New(logFile, "", 0)
+			logger.Printf("%s - Line %d: Generated Password: %s", currentTime, currentLine, password)
+		}
+	case "UK":
+		fallthrough
+	default:
+		logPassword = func(password string) {
+			logFile, err := os.OpenFile("passwords.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+			if err != nil {
+				fmt.Printf("Error opening log file: %v\n", err)
+				return
+			}
+			defer logFile.Close()
+
+			counterLock.Lock()
+			lineCounter++
+			currentLine := lineCounter
+			counterLock.Unlock()
+
+			currentTime := time.Now().Format("02/01/2006 15:04:05") // DD/MM/YYYY 24-hour
+
+			logger := log.New(logFile, "", 0)
+			logger.Printf("%s - Line %d: Generated Password: %s", currentTime, currentLine, password)
+		}
 	}
-	defer logFile.Close()
-
-	// Increment the global counter safely
-	counterLock.Lock()
-	lineCounter++
-	currentLine := lineCounter
-	counterLock.Unlock()
-
-	// Set up the logger to write to the file
-	logger := log.New(logFile, "", log.LstdFlags)
-
-	// Log the password with sequential line number, date, and time
-	logger.Printf("Line %d: Generated Password: %s", currentLine, password)
 }
 
 func generatePassword(length int) string {
-	// Define characters pool for the password
 	characterPool := uppercaseLetters + lowercaseLetters + digits + specialChars
-
 	rand.Seed(time.Now().UnixNano())
 
-	// Generate the password
 	password := make([]byte, length)
 	for i := 0; i < length; i++ {
 		randomIndex := rand.Intn(len(characterPool))
 		password[i] = characterPool[randomIndex]
 	}
-
 	return string(password)
 }
 
 func main() {
-	passwordLength := 22 // Change this value to set the length of the password
+	reader := bufio.NewReader(os.Stdin)
 
-	// Generate and log passwords multiple times for demonstration
+	fmt.Print("Choose date format (US/UK) [default UK]: ")
+	input, err := reader.ReadString('\n')
+	if err != nil {
+		fmt.Println("Input error, defaulting to UK format")
+		input = "UK"
+	}
+	input = strings.TrimSpace(input)
+	if input == "" {
+		input = "UK"
+	}
+
+	setLogFormat(input)
+
+	passwordLength := 22
 	for i := 0; i < 5; i++ {
 		password := generatePassword(passwordLength)
 		fmt.Printf("Generated Password: %s\n", password)
-
-		// Log the generated password
 		logPassword(password)
 	}
 }

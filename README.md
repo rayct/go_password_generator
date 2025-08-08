@@ -64,16 +64,20 @@ All generated passwords are automatically logged to a file named `passwords.log`
 - The generated password.
 - The date and time of generation.
 
----
-
-### Logging Feature
-
 The logging system ensures traceability of generated passwords:
 - **File**: `passwords.log`.
 - **Format**:
   ```
   YYYY/MM/DD HH:MM:SS Line <Line Number>: Generated Password: <Password>
   ```
+
+### Feature Changes
+
+#### v0.1.0 - First inital Release
+- Logging Passwords to txt file, Date and time stamp with sequential line numbers.
+#### v0.2.0
+- Changed Date format to from US to UK.
+
 
 #### Example Log Entry:
 ```
@@ -146,6 +150,6 @@ MIT License. See `LICENSE` file for details.
 
 Documentation By: **Raymond C. Turner**
 
-**Revision:** November 24th, 2024
+**Revision:** August 8th, 2025
 
 **Author:** [rayturner.dev]()
