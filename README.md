@@ -77,7 +77,8 @@ The logging system ensures traceability of generated passwords:
 #### v0.1.0 - First inital Release
 - Logging Passwords to txt file, Date and time stamp with sequential line numbers.
 #### v0.2.0
-- Date format can be changed from UK to US by prompting the user.
+- Changed default date format from US to UK.
+- Date format can now be changed from UK to US by prompting the user.
 
 
 #### Example Log Entry:
