@@ -1,4 +1,4 @@
-## CLI Password Generator written in Go - Release v0.1.0
+## CLI Password Generator written in Go - Release v0.2.0
 
 ## Table of Contents
 
