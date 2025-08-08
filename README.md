@@ -66,8 +66,9 @@ All generated passwords are automatically logged to a file named `passwords.log`
 
 The logging system ensures traceability of generated passwords:
 - **File**: `passwords.log`.
-- **Format**:
+- **Format**: US/UK - UK default
   ```
+  DD/MM/YYYY HH:MM:SS Line <Line Number>: Generated Password: <Password>
   YYYY/MM/DD HH:MM:SS Line <Line Number>: Generated Password: <Password>
   ```
 
@@ -76,7 +77,7 @@ The logging system ensures traceability of generated passwords:
 #### v0.1.0 - First inital Release
 - Logging Passwords to txt file, Date and time stamp with sequential line numbers.
 #### v0.2.0
-- Changed Date format to from US to UK.
+- Date format can be changed from UK to US by prompting the user.
 
 
 #### Example Log Entry:
