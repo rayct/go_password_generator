@@ -5,4 +5,4 @@
 
 ## [0.2.0] - 08-08-2025
 ### Changed
-- Log timestamps now program prompts the user for UK or US format (DD/MM/YYYY HH:MM:SS) & (YYYY/MM/DD)
+- Log timestamp format. Program now prompts the user for UK or US format (DD/MM/YYYY HH:MM:SS) & (YYYY/MM/DD)
