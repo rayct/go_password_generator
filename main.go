@@ -106,7 +106,7 @@ func main() {
 
 	setLogFormat(input)
 
-	passwordLength := 22
+	passwordLength := 24
 	for i := 0; i < 5; i++ {
 		password := generatePassword(passwordLength)
 		fmt.Printf("Generated Password: %s\n", password)

@@ -125,7 +125,7 @@ package main
 // ... (Code provided earlier)
 
 func main() {
-    passwordLength := 22 // Set the desired password length
+    passwordLength := 24 // Set the desired password length
     password := generatePassword(passwordLength)
     fmt.Printf("Generated Password: %s\n", password)
 
@@ -152,6 +152,6 @@ MIT License. See `LICENSE` file for details.
 
 Documentation By: **Raymond C. Turner**
 
-**Revision:** August 8th, 2025
+**Revision:** September 5th, 2025
 
 **Author:** [rayturner.dev]()
