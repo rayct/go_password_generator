@@ -79,6 +79,8 @@ The logging system ensures traceability of generated passwords:
 #### v0.2.0
 - Changed default date format from US to UK.
 - Date format can now be changed from UK to US by prompting the user.
+#### v2.0.1
+- Changed password output length from 22 > 24 characters.
 
 
 #### Example Log Entry:
