@@ -24,7 +24,7 @@ var (
 	lineCounter int
 	counterLock sync.Mutex
 
-	// logPassword is a function variable for easy override/swapping
+	// logPassword is a function variable for easy override/swapping.
 	logPassword func(string)
 )
 
